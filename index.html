@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7d9c4" />
+  <title>Une petite aventure pour toi ♥</title>
+  <link rel="preconnect" href="data:," />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <main class="app" id="app">
+    <!-- Landing screen -->
+    <section class="screen screen--active" id="screen-landing" aria-live="polite">
+      <div class="card card--hero">
+        <div class="hero-emoji" aria-hidden="true">🎈</div>
+        <h1 class="hero-title">Joyeux anniversaire&nbsp;!</h1>
+        <p class="hero-subtitle">
+          Je t&rsquo;ai préparé une petite chasse aux énigmes. Résous chaque indice
+          et il te mènera à un cadeau caché. Prends ton temps&nbsp;&mdash; rien ne
+          presse et il n&rsquo;y a pas de mauvaise réponse définitive.
+        </p>
+        <button class="btn btn--primary" id="btn-start" type="button">Commencer la chasse&nbsp;→</button>
+        <p class="hero-note" id="resume-note" hidden>Tu as des énigmes en cours &mdash; on reprend là où tu t&rsquo;étais arrêtée.</p>
+      </div>
+    </section>
+
+    <!-- Puzzle screen (template filled by JS) -->
+    <section class="screen" id="screen-puzzle" aria-live="polite">
+      <div class="progress" id="progress">
+        <div class="progress__bar" id="progress-bar"></div>
+      </div>
+      <p class="progress__label" id="progress-label"></p>
+
+      <div class="card" id="puzzle-card">
+        <p class="puzzle-index" id="puzzle-index"></p>
+        <h2 class="puzzle-title" id="puzzle-title"></h2>
+        <p class="puzzle-question" id="puzzle-question"></p>
+
+        <form class="puzzle-form" id="puzzle-form" autocomplete="off" novalidate>
+          <div class="puzzle-input-area" id="puzzle-input-area"></div>
+          <button class="btn btn--primary" id="btn-check" type="submit">Check</button>
+        </form>
+
+        <p class="feedback" id="feedback" role="status"></p>
+      </div>
+
+      <!-- Success overlay within the puzzle -->
+      <div class="card card--success" id="success-card" hidden>
+        <div class="success-emoji" aria-hidden="true">🎁</div>
+        <h2 class="success-title">Bien joué&nbsp;!</h2>
+        <p class="success-message" id="success-message"></p>
+        <button class="btn btn--primary" id="btn-next" type="button">Énigme suivante&nbsp;→</button>
+      </div>
+    </section>
+
+    <!-- Final screen -->
+    <section class="screen" id="screen-final" aria-live="polite">
+      <div class="card card--final">
+        <div class="final-emoji" aria-hidden="true">💝</div>
+        <h1 class="final-title">Tu as réussi&nbsp;!</h1>
+        <p class="final-message" id="final-message"></p>
+        <button class="btn btn--ghost" id="btn-replay" type="button">Rejouer</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <button type="button" class="reset-btn" id="reset-link" title="Réinitialiser la progression">↺ Réinitialiser</button>
+  </footer>
+
+  <!-- Confetti canvas for the final celebration -->
+  <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
