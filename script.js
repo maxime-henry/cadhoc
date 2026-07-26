@@ -41,7 +41,7 @@ const puzzles = [
     title: "Le mot mystère",
     question:
       "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
-    answer: "PTILOULOU",
+    answer: "ABRICOT",
     giftLabel: "Cadeau n°1",
     success: "🎁 Bravo, c'est bien un enculé!!! <br> Indice, un kdo ce trouve ici :<br><img src=\"https://images.ctfassets.net/gy95mqeyjg28/71Hqko1MOtbiPMd3y8iJM9/289a4d0e25d53b5025d727202e184db2/GP2304_102104_FC_1387.jpg\" alt=\"indice\">",
   },
