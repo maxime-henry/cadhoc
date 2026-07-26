@@ -9,9 +9,10 @@ const messages = {
   // Shown on the very last screen after all puzzles are solved.
   final:
     "C'était la dernière. 💛\n\n" +
-    "Chaque indice te rapprochait un peu plus de tout ce que tu représentes pour moi. " +
-    "J'espère que cette journée a été aussi spéciale que toi.\n\n" +
-    "Joyeux anniversaire, petite bébé. 🎂🎉\n\n" 
+    "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. " +
+    "Joyeux anniversaire, petite bébé. 🎂🎉\n\n"+
+    "I love you degezeur <br>\n\n"+
+    "<img src=\"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2U0OGdmcTI5em42cGE2d3d0amk0bjBodmthZzV3M2N2NHl5OTZweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rFI98dr1n3tQMpAmt0/giphy.gif\" alt=\"gif de loulou\">",
 };
 
 /* ------------------------------------------------------------------
@@ -82,7 +83,41 @@ const puzzles = [
     success: "🎁 Bah c'est super ça📖 <br> Indice, chez vous a la maison : <img src=\"https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyajRhMGE2eWRjb2hrYWp0Z3FzcnlsZ2l3Nnl5bWl4Nm14ZjdnOHE0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/APq0WQXgQQrKFcBbjP/giphy.gif\" alt=\"indice\">",
   },
   {
-    id: 4, /* -- Juste une sucette en forme de coeur -- */
+    id: 4,
+    type: "chronology",
+    title: "Tu te souviens ?",
+    question:
+      "Touche deux photos pour les échanger et remets nos souvenirs dans l'ordre chronologique (du plus ancien au plus récent).",
+    // List every photo of photos/chronology/ here, in the CORRECT chronological
+    // order (oldest first). They will be shuffled automatically for the player.
+    images: [
+      "photos/chronology/1.jpeg",
+      "photos/chronology/2.jpeg",
+      "photos/chronology/3.jpeg",
+      "photos/chronology/4.jpeg",
+      "photos/chronology/5.jpeg",
+      "photos/chronology/6.jpeg",
+      "photos/chronology/7.jpeg",
+      "photos/chronology/8.jpeg",
+      "photos/chronology/9.jpeg",
+      "photos/chronology/10.jpeg",
+      "photos/chronology/11.jpeg",
+      "photos/chronology/12.jpeg",
+      "photos/chronology/14.jpeg",
+      "photos/chronology/15.jpeg",
+      "photos/chronology/16.jpeg",
+      "photos/chronology/17.jpeg",
+      "photos/chronology/18.jpeg",
+      "photos/chronology/19.jpeg",
+      "photos/chronology/20.jpeg",
+      "photos/chronology/21.jpeg",
+      "photos/chronology/22.jpeg",
+    ],
+    giftLabel: "Cadeau n°4",
+    success: "🎁 Bravo, ici le cadeau c'est ton année en fait!!",
+  },
+  {
+    id: 5, /* -- Juste une sucette en forme de coeur -- */
     type: "choice",
     title: "Une question toute simple",
     question: "Tu veux sortir avec moi ?",
@@ -92,7 +127,7 @@ const puzzles = [
     success: "💛",
   },
   {
-    id: 5, /* -- Enssens spritz caché derriere le tableau du salon -- */
+    id: 6, /* -- Enssens spritz caché derriere le tableau du salon -- */
     type: "text",
     title: "Où sommes-nous ?",
     question: "Où a été prise cette photo ?",
@@ -101,17 +136,17 @@ const puzzles = [
     success: "Indice : <em>'Finalement prendre soin, c'est savoir aimer'</em>",
   },
     {
-    id: 6, /* -- Savon pour main caché je ne sais pas ou pour l'instant -- */
+    id: 7, /* -- Savon pour main caché je ne sais pas ou pour l'instant -- */
     type: "wordle",
     title: "Mot mystère",
     question:
       "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
     answer: "RITUALS",
     giftLabel: "Cadeau n°6",
-    success: "🎁 Parce que ce qui compte dans la vie c'est les petits (loulou) produits 🧼",
+    success: "🎁 Parce que ce qui compte dans la vie c'est les petits (loulou) produits 🧼 <br> Indice : <img src=\"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjhxZjM5ajNoaHJyMG5wZ2IwODBmYWVhN3Y3NG9kaHlscW5xOXkzMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dz28kqvxiNTgkaFywk/giphy.gif\" alt=\"indice\">",
   },
   {
-    id: 7, /* -- Lunch box pour le travail, pas encore caché -- */
+    id: 8, /* -- Lunch box pour le travail, pas encore caché -- */
     type: "text",
     title: "Sell me this pen",
     question:
@@ -121,7 +156,7 @@ const puzzles = [
     success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe ici : ",
   },
   {
-    id: 8, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
+    id: 9, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
     type: "memory",
     title: "Light's Off",
     question:
@@ -138,7 +173,7 @@ const puzzles = [
     success: "🎁 Bravo, mémoire d'éléphant ! 🐘",
   },
   {
-    id: 9, /* -- Cadeau walking pad qui va arriver bientot -- */
+    id: 10, /* -- Cadeau walking pad qui va arriver bientot -- */
     type: "guess",
     title: "Le nombre juste",
     question:
@@ -489,6 +524,79 @@ function renderMemory(puzzle) {
   el.inputArea.appendChild(grid);
 }
 
+/* ----- Chronology / ordering game ----- */
+function swapNodes(a, b) {
+  // Reliable DOM swap of two sibling nodes using a temporary marker.
+  const marker = document.createComment("");
+  a.parentNode.insertBefore(marker, a);
+  b.parentNode.insertBefore(a, b);
+  marker.parentNode.insertBefore(b, marker);
+  marker.remove();
+}
+
+function renderChronology(puzzle) {
+  // The array order is the correct chronological order; shuffle for display.
+  const items = puzzle.images.map((src, i) => ({ src, correct: i }));
+  let order;
+  do {
+    order = items.slice();
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+  } while (order.length > 1 && order.every((it, i) => it.correct === i));
+
+  const grid = document.createElement("div");
+  grid.className = "chronology-grid";
+  grid.id = "chronology-grid";
+
+  let selected = null;
+
+  function renumber() {
+    Array.from(grid.children).forEach((tile, i) => {
+      const badge = tile.querySelector(".chronology-badge");
+      if (badge) badge.textContent = i + 1;
+    });
+  }
+
+  function selectTile(btn) {
+    if (selected === btn) {
+      btn.classList.remove("is-selected");
+      selected = null;
+      return;
+    }
+    if (!selected) {
+      selected = btn;
+      btn.classList.add("is-selected");
+      return;
+    }
+    swapNodes(selected, btn);
+    selected.classList.remove("is-selected");
+    selected = null;
+    renumber();
+  }
+
+  order.forEach((item) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "chronology-tile";
+    btn.dataset.correct = String(item.correct);
+    const badge = document.createElement("span");
+    badge.className = "chronology-badge";
+    const img = document.createElement("img");
+    img.src = item.src;
+    img.alt = "";
+    img.loading = "lazy";
+    btn.appendChild(img);
+    btn.appendChild(badge);
+    btn.addEventListener("click", () => selectTile(btn));
+    grid.appendChild(btn);
+  });
+
+  el.inputArea.appendChild(grid);
+  renumber();
+}
+
 /* ----- Rendering a puzzle ----- */
 function renderPuzzle() {
   detachKeyHandler();
@@ -581,6 +689,8 @@ function renderPuzzle() {
   } else if (puzzle.type === "memory") {
     el.form.classList.add("is-choice");
     renderMemory(puzzle);
+  } else if (puzzle.type === "chronology") {
+    renderChronology(puzzle);
   } else {
     const input = document.createElement("input");
     input.id = "answer-input";
@@ -615,6 +725,18 @@ function handleTextSubmit(e) {
   e.preventDefault();
   const puzzle = puzzles[state.index];
   if (!puzzle || puzzle.type === "choice" || puzzle.type === "wordle") return;
+  if (puzzle.type === "chronology") {
+    const grid = document.getElementById("chronology-grid");
+    if (!grid) return;
+    const tiles = Array.from(grid.querySelectorAll(".chronology-tile"));
+    const ordered = tiles.every((t, i) => Number(t.dataset.correct) === i);
+    if (ordered) {
+      onCorrect(puzzle);
+    } else {
+      onWrong();
+    }
+    return;
+  }
   if (puzzle.type === "multi") {
     const grid = document.getElementById("multi-grid");
     if (!grid) return;
@@ -718,7 +840,7 @@ function goNext() {
 }
 
 function finish() {
-  el.finalMessage.textContent = messages.final;
+  el.finalMessage.innerHTML = messages.final.replace(/\n/g, "<br>");
   showScreen("final");
   launchConfetti();
 }
