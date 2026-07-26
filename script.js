@@ -560,6 +560,13 @@ function renderChronology(puzzle) {
   }
 
   function selectTile(btn) {
+    // A previously-selected tile may have been locked by a Check — drop it.
+    if (selected && selected.classList.contains("is-locked")) {
+      selected.classList.remove("is-selected");
+      selected = null;
+    }
+    // Locked (correctly-placed) tiles can no longer be moved.
+    if (btn.classList.contains("is-locked")) return;
     if (selected === btn) {
       btn.classList.remove("is-selected");
       selected = null;
@@ -729,11 +736,24 @@ function handleTextSubmit(e) {
     const grid = document.getElementById("chronology-grid");
     if (!grid) return;
     const tiles = Array.from(grid.querySelectorAll(".chronology-tile"));
-    const ordered = tiles.every((t, i) => Number(t.dataset.correct) === i);
+    // Lock every correctly-placed photo so it can no longer be moved.
+    let lockedCount = 0;
+    tiles.forEach((t, i) => {
+      if (Number(t.dataset.correct) === i) {
+        t.classList.add("is-locked");
+        t.classList.remove("is-selected");
+      }
+      if (t.classList.contains("is-locked")) lockedCount++;
+    });
+    const ordered = lockedCount === tiles.length;
     if (ordered) {
       onCorrect(puzzle);
     } else {
-      onWrong();
+      el.feedback.textContent = `${lockedCount}/${tiles.length} bien placées et verrouillées ✅ — continue !`;
+      el.feedback.className = "feedback is-good";
+      el.puzzleCard.classList.remove("shake");
+      void el.puzzleCard.offsetWidth;
+      el.puzzleCard.classList.add("shake");
     }
     return;
   }
