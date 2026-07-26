@@ -298,11 +298,82 @@ body {
   background: var(--accent-soft);
 }
 
+/* Illustrative photo shown above an input (e.g. "where was this taken?") */
+.puzzle-photo {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 3px solid var(--accent-soft);
+  margin-bottom: 16px;
+}
+
 /* Image choice (pick-a-photo) */
 .image-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+}
+
+/* Memory game */
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.memory-card {
+  position: relative;
+  padding: 0;
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--accent-soft);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.12s ease, border-color 0.2s ease;
+}
+
+.memory-card::after {
+  content: "?";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.memory-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.memory-card.is-flipped img,
+.memory-card.is-matched img {
+  opacity: 1;
+}
+
+.memory-card.is-flipped::after,
+.memory-card.is-matched::after {
+  display: none;
+}
+
+.memory-card.is-matched {
+  border-color: var(--accent);
+  cursor: default;
+}
+
+.memory-card:active {
+  transform: scale(0.97);
 }
 
 .image-choice {
@@ -521,6 +592,14 @@ body {
   line-height: 1.5;
   margin: 0 0 24px;
   white-space: pre-line;
+}
+
+.success-message img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 12px auto 0;
 }
 
 /* ---------------- Final ---------------- */
