@@ -9,6 +9,7 @@ const messages = {
   // Shown on the very last screen after all puzzles are solved.
   final:
     "C'était la dernière. 💛\n\n" +
+    "T'as bien aimé ? \n\n" +
     "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. Bravo pour l'année incroyable à venir. </br> \n\n" +
     "Joyeux anniversaire, petite bébé. 🎂🎉\n\n"+
     "I love you degezeur <br>\n\n"+
@@ -64,7 +65,7 @@ const puzzles = [
       {
         id: 3, /* -- Livre comment bien dormir caché dans la boite des lego systeme solaire -- */
     type: "multi",
-    title: "Le secret d'une bonne nuit",
+    title: "Coordination cardiaque",
     question:
       "Selon les experts, quels sont LES bons réflexes avant de dormir ?",
     options: [
@@ -80,7 +81,7 @@ const puzzles = [
       "S'enfiler un euphytose nuit",
     ],
     giftLabel: "Cadeau n°3",
-    success: "🎁 Bah c'est super ça📖 <br> Indice, chez vous a la maison : <img src=\"https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyajRhMGE2eWRjb2hrYWp0Z3FzcnlsZ2l3Nnl5bWl4Nm14ZjdnOHE0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/APq0WQXgQQrKFcBbjP/giphy.gif\" alt=\"indice\">",
+    success: "Bah c'est super ça📖 <br> Indice, chez vous a la maison : <img src=\"https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyajRhMGE2eWRjb2hrYWp0Z3FzcnlsZ2l3Nnl5bWl4Nm14ZjdnOHE0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/APq0WQXgQQrKFcBbjP/giphy.gif\" alt=\"indice\">",
   },
   {
     id: 4,
@@ -114,12 +115,12 @@ const puzzles = [
       "photos/chronology/22.jpeg",
     ],
     giftLabel: "Cadeau n°4",
-    success: "🎁 Ici le cadeau, bah c'est ton année en fait!!",
+    success: "Ici le cadeau, bah c'est ton année en fait!! Bravo et joyeux zaniv 🎁",
   },
   {
     id: 5, /* -- Juste une sucette en forme de coeur -- */
     type: "choice",
-    title: "Une question toute simple",
+    title: "J'ai une question..",
     question: "Tu veux sortir avec moi ?",
     options: ["oui <3", "OUI", "Peut être", "Non", "Twogetzeur"],
     answer: ["oui <3", "OUI", "Twogetzeur"],
@@ -138,23 +139,23 @@ const puzzles = [
   },
     {
     id: 7, /* -- Savon pour main caché je ne sais pas ou pour l'instant -- */
-    type: "wordle",
+    type: "text",
     title: "Mot mystère",
     question:
-      "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
+      "Remets les lettres dans l'ordre pour trouver le mot mystère : U T I L S A I R",
     answer: "RITUALS",
     giftLabel: "Cadeau n°6",
     success: "🎁 Parce que ce qui compte dans la vie c'est les petits (loulou) produits 🧼 <br> Indice : <img src=\"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjhxZjM5ajNoaHJyMG5wZ2IwODBmYWVhN3Y3NG9kaHlscW5xOXkzMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dz28kqvxiNTgkaFywk/giphy.gif\" alt=\"indice\">",
   },
   {
     id: 8, /* -- Lunch box pour le travail, pas encore caché -- */
-    type: "text",
+    type: "wordle",
     title: "Sell me this pen",
     question:
-      "Remets les lettres dans l'ordre:\n\n« L N E O Y M»\n",
+      "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
     answer: ["emlyon"],
     giftLabel: "Cadeau n°7",
-    success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe ici : ",
+    success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe dans 🎤 〰️",
   },
   {
     id: 9, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
@@ -171,14 +172,14 @@ const puzzles = [
       "photos/memory/IMG_3420.jpeg",
     ],
     giftLabel: "Cadeau n°8",
-    success: "🎁 Bravo, plus de mémoire que de cardio! Merci pour cet hyrox et bon anniversaire!",
+    success: "🎁 Plus de mémoire que de cardio! Merci pour cet hyrox et bon anniversaire! On va aller bien manger pour récuperer de cet hyrox éprouvant",
   },
   {
     id: 10, /* -- Cadeau walking pad qui va arriver bientot -- */
     type: "guess",
     title: "Le nombre juste",
     question:
-      "En moyenne, combien de pas fait Abricot par jour ?",
+      "En moyenne, combien de pas de plus que toi fait Abricot par jour ?",
     answer: 15655,
     giftLabel: "Cadeau n°9",
     success: "🎁 Bravo! Oui je sais, c'est énorme. Mais il a des petites pattes d'enculé. <br> Psssst, ça arrive bientot 🤫 <img src=\"photos/walking-pad.png\" alt=\"indice\">",
