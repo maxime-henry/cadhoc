@@ -10,7 +10,7 @@ const messages = {
   final:
     "C'était la dernière. 💛\n\n" +
     "T'as bien aimé ? \n\n" +
-    "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. Bravo pour l'année incroyable à venir. </br> \n\n" +
+    "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. Bravo pour l'année incroyable à venir. <br> \n\n" +
     "Joyeux anniversaire, petite bébé. 🎂🎉\n\n"+
     "I love you degezeur <br>\n\n"+
     "<img src=\"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTR4ZGtzNHdvNGdvM3ppdWU4d2FvZTU2OHFueHQ0bWM3Nm45NndpbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aP3LozoEVcsn7SDtAN/giphy.gif\" alt=\"gif de loulou\">",
