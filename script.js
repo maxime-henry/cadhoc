@@ -153,7 +153,7 @@ const puzzles = [
     title: "Sell me this pen",
     question:
       "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
-    answer: ["emlyon"],
+    answer: "EMLYON",
     giftLabel: "Cadeau n°7",
     success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe dans 🎤 〰️",
   },
