@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f7d9c4" />
   <title>Une petite aventure pour toi ♥</title>
   <link rel="preconnect" href="data:," />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,9 +19,8 @@
         <div class="hero-emoji" aria-hidden="true">🎈</div>
         <h1 class="hero-title">Joyeux anniversaire&nbsp;!</h1>
         <p class="hero-subtitle">
-          Je t&rsquo;ai préparé une petite chasse aux énigmes. Résous chaque indice
-          et il te mènera à un cadeau caché. Prends ton temps&nbsp;&mdash; rien ne
-          presse et il n&rsquo;y a pas de mauvaise réponse définitive.
+          Ah ouais, cheveux d'anniversaire et tout genre. Bah bravo déjà, pour ta journée, pour ton travail, pour tes 34 balais, pour ta familly, pour ton 
+          formidable petit ami, pour ton corps de rêve, pour ton cerveau, pour ton humour, t'es cheulie. Parcourons ensemble cette année. Résout les énigmes pour découvrir tes cadeaux&nbsp;!
         </p>
         <button class="btn btn--primary" id="btn-start" type="button">Commencer la chasse&nbsp;→</button>
         <p class="hero-note" id="resume-note" hidden>Tu as des énigmes en cours &mdash; on reprend là où tu t&rsquo;étais arrêtée.</p>
@@ -68,12 +68,14 @@
   </main>
 
   <footer class="footer">
+    <button type="button" class="reset-btn" id="solve-btn" title="[DEV] Résoudre automatiquement" style="color:#6bbf8a;">⚡ Solve</button>
     <button type="button" class="reset-btn" id="reset-link" title="Réinitialiser la progression">↺ Réinitialiser</button>
   </footer>
 
   <!-- Confetti canvas for the final celebration -->
   <canvas class="confetti" id="confetti" aria-hidden="true"></canvas>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

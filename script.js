@@ -9,10 +9,10 @@ const messages = {
   // Shown on the very last screen after all puzzles are solved.
   final:
     "C'était la dernière. 💛\n\n" +
-    "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. " +
+    "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. Bravo pour l'année incroyable à venir. </br> \n\n" +
     "Joyeux anniversaire, petite bébé. 🎂🎉\n\n"+
     "I love you degezeur <br>\n\n"+
-    "<img src=\"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2U0OGdmcTI5em42cGE2d3d0amk0bjBodmthZzV3M2N2NHl5OTZweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rFI98dr1n3tQMpAmt0/giphy.gif\" alt=\"gif de loulou\">",
+    "<img src=\"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTR4ZGtzNHdvNGdvM3ppdWU4d2FvZTU2OHFueHQ0bWM3Nm45NndpbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aP3LozoEVcsn7SDtAN/giphy.gif\" alt=\"gif de loulou\">",
 };
 
 /* ------------------------------------------------------------------
@@ -41,9 +41,9 @@ const puzzles = [
     title: "Le mot mystère",
     question:
       "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
-    answer: "ABRICOT",
+    answer: "LOULOU",
     giftLabel: "Cadeau n°1",
-    success: "🎁 Bravo, c'est bien un enculé!!! <br> Indice, un kdo ce trouve ici :<br><img src=\"https://images.ctfassets.net/gy95mqeyjg28/71Hqko1MOtbiPMd3y8iJM9/289a4d0e25d53b5025d727202e184db2/GP2304_102104_FC_1387.jpg\" alt=\"indice\">",
+    success: "🎁 Bravo, c'est lui, l'enculé!!! <br> Indice, un kdo ce trouve ici :<br><img src=\"https://images.ctfassets.net/gy95mqeyjg28/71Hqko1MOtbiPMd3y8iJM9/289a4d0e25d53b5025d727202e184db2/GP2304_102104_FC_1387.jpg\" alt=\"indice\">",
   },
   {
     id: 2, /* -- Appareil photo a pellicule cahcé dans la guitare -- */
@@ -59,7 +59,7 @@ const puzzles = [
     answer: "3" ,
     restartOn: ["1","2", "4"], // if the user selects this option, the hunt restarts
     giftLabel: "Cadeau n°2",
-    success: "🎁 Bravo le veau, t'as trouvé la photo 'retro'<br> Tu pourras en faire d'autres en allant ici: <img src=\"photos/guitare.png\" alt=\"indice\">",
+    success: "🎁 Bravo le veau, t'as trouvé la photo 'retro'<br> Tu pourras en faire d'autres en suivant cet indice: <img src=\"photos/guitare1.png\" alt=\"indice\">",
   },
       {
         id: 3, /* -- Livre comment bien dormir caché dans la boite des lego systeme solaire -- */
@@ -114,7 +114,7 @@ const puzzles = [
       "photos/chronology/22.jpeg",
     ],
     giftLabel: "Cadeau n°4",
-    success: "🎁 Bravo, ici le cadeau c'est ton année en fait!!",
+    success: "🎁 Ici le cadeau, bah c'est ton année en fait!!",
   },
   {
     id: 5, /* -- Juste une sucette en forme de coeur -- */
@@ -128,11 +128,12 @@ const puzzles = [
   },
   {
     id: 6, /* -- Enssens spritz caché derriere le tableau du salon -- */
-    type: "text",
+    type: "map",
     title: "Où sommes-nous ?",
-    question: "Où a été prise cette photo ?",
+    question: "Clique sur la carte pour deviner où a été prise cette photo !",
     image: "photos/where-1.jpg",
-    answer: "Oslo",
+    answer: [59.9048112, 10.758863], // Precise coordinates of the location (latitude, longitude)
+    winRadius: 0.3, // km — click within this radius to win
     success: "Indice : <em>'Finalement prendre soin, c'est savoir aimer'</em>",
   },
     {
@@ -170,7 +171,7 @@ const puzzles = [
       "photos/memory/IMG_3420.jpeg",
     ],
     giftLabel: "Cadeau n°8",
-    success: "🎁 Bravo, mémoire d'éléphant ! 🐘",
+    success: "🎁 Bravo, plus de mémoire que de cardio! Merci pour cet hyrox et bon anniversaire!",
   },
   {
     id: 10, /* -- Cadeau walking pad qui va arriver bientot -- */
@@ -534,6 +535,91 @@ function swapNodes(a, b) {
   marker.remove();
 }
 
+/* ----- Map (clickable geoguesser) game ----- */
+let activeMap = null;
+
+function destroyMap() {
+  if (activeMap) {
+    activeMap.remove();
+    activeMap = null;
+  }
+}
+
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function renderMap(puzzle) {
+  el.form.classList.add("is-choice"); // hide the Check button
+  const [targetLat, targetLng] = puzzle.answer;
+  const winRadius = puzzle.winRadius || 50;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "map-wrapper";
+
+  const mapDiv = document.createElement("div");
+  mapDiv.id = "map-container";
+  wrapper.appendChild(mapDiv);
+
+  const info = document.createElement("p");
+  info.className = "map-info";
+  info.textContent = "Clique sur la carte pour deviner !";
+  wrapper.appendChild(info);
+
+  el.inputArea.appendChild(wrapper);
+
+  // Initialise Leaflet after DOM insertion so it can measure the container.
+  const map = L.map("map-container", { zoomControl: true }).setView([30, 10], 2);
+  activeMap = map;
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+    maxZoom: 18,
+  }).addTo(map);
+
+  let marker = null;
+  let attempts = 0;
+
+  map.on("click", (e) => {
+    const { lat, lng } = e.latlng;
+    attempts++;
+
+    if (marker) map.removeLayer(marker);
+    marker = L.marker([lat, lng]).addTo(map);
+
+    const dist = haversineKm(lat, lng, targetLat, targetLng);
+
+    if (dist <= winRadius) {
+      // WIN — show the target and a line
+      L.marker([targetLat, targetLng], {
+        icon: L.divIcon({ className: "map-target-icon", html: "📍", iconSize: [28, 28] }),
+      }).addTo(map);
+      L.polyline([[lat, lng], [targetLat, targetLng]], { color: "#6bbf8a", dashArray: "6" }).addTo(map);
+      info.innerHTML = `<strong>Bravo !</strong> C'était à ${Math.round(dist)} km — trouvé en ${attempts} essai${attempts > 1 ? "s" : ""} !`;
+      info.classList.add("is-good");
+      map.off("click"); // disable further clicks
+      setTimeout(() => onCorrect(puzzle), 1200);
+    } else {
+      // Feedback with distance
+      let emoji;
+      if (dist < 200) emoji = "🔥";
+      else if (dist < 500) emoji = "☀️";
+      else if (dist < 1500) emoji = "🌤️";
+      else if (dist < 3000) emoji = "❄️";
+      else emoji = "🥶";
+      info.textContent = `${emoji} À ${Math.round(dist).toLocaleString("fr-FR")} km, essaie encore !`;
+      info.classList.remove("is-good");
+    }
+  });
+}
+
 function renderChronology(puzzle) {
   // The array order is the correct chronological order; shuffle for display.
   const items = puzzle.images.map((src, i) => ({ src, correct: i }));
@@ -633,6 +719,7 @@ function renderPuzzle() {
   // Build the input area based on type
   el.inputArea.innerHTML = "";
   el.form.classList.remove("is-choice", "is-wordle");
+  destroyMap();
 
   // Optional illustrative photo shown above the input (e.g. "where was this taken?")
   if (puzzle.image) {
@@ -693,6 +780,8 @@ function renderPuzzle() {
       grid.appendChild(btn);
     });
     el.inputArea.appendChild(grid);
+  } else if (puzzle.type === "map") {
+    renderMap(puzzle);
   } else if (puzzle.type === "memory") {
     el.form.classList.add("is-choice");
     renderMemory(puzzle);
@@ -731,7 +820,7 @@ function renderPuzzle() {
 function handleTextSubmit(e) {
   e.preventDefault();
   const puzzle = puzzles[state.index];
-  if (!puzzle || puzzle.type === "choice" || puzzle.type === "wordle") return;
+  if (!puzzle || puzzle.type === "choice" || puzzle.type === "wordle" || puzzle.type === "map") return;
   if (puzzle.type === "chronology") {
     const grid = document.getElementById("chronology-grid");
     if (!grid) return;
@@ -945,6 +1034,7 @@ function launchConfetti() {
 function resetHunt() {
   clearProgress();
   detachKeyHandler();
+  destroyMap();
   state.index = 0;
   el.resumeNote.hidden = true;
   if (confettiRAF) cancelAnimationFrame(confettiRAF);
@@ -964,6 +1054,14 @@ el.replayBtn.addEventListener("click", resetHunt);
 el.resetLink.addEventListener("click", (e) => {
   e.preventDefault();
   resetHunt();
+});
+
+/* ----- Dev: auto-solve current puzzle ----- */
+document.getElementById("solve-btn").addEventListener("click", () => {
+  const puzzle = puzzles[state.index];
+  if (!puzzle) return;
+  detachKeyHandler();
+  onCorrect(puzzle);
 });
 
 /* ----- Init ----- */
