@@ -243,6 +243,10 @@ body {
   gap: 12px;
 }
 
+.puzzle-card.is-input-locked .puzzle-form {
+  pointer-events: none;
+}
+
 .text-input,
 .number-input {
   font-family: inherit;

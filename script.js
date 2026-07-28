@@ -1019,6 +1019,8 @@ function goNext() {
     finish();
   } else {
     renderPuzzle();
+    el.puzzleCard.classList.add("is-input-locked");
+    setTimeout(() => el.puzzleCard.classList.remove("is-input-locked"), 350);
   }
 }
 
