@@ -13,6 +13,7 @@ const messages = {
     "Bravo pour cette année incroyable, voyage, hyrox, maman d'un chat. Bravo pour l'année incroyable à venir. <br> \n\n" +
     "Joyeux anniversaire, petite bébé. 🎂🎉\n\n"+
     "I love you degezeur <br>\n\n"+
+    "chetaime, non, Je t'aime <3 <br>\n\n"+
     "<img src=\"https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTR4ZGtzNHdvNGdvM3ppdWU4d2FvZTU2OHFueHQ0bWM3Nm45NndpbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aP3LozoEVcsn7SDtAN/giphy.gif\" alt=\"gif de loulou\">",
 };
 
@@ -53,7 +54,7 @@ const puzzles = [
     question: "Parmi ces photos de nous, laquelle est la plus ancienne ?",
     options: [
       { src: "photos/photo-1.jpg", value: "1" },
-      { src: "photos/photo-2.jpg", value: "2" },
+      { src: "photos/photo-2.jpg", value: "2" },  
       { src: "photos/photo-3.jpg", value: "3" },
       { src: "photos/photo-4.jpg", value: "4" },
     ],
@@ -148,7 +149,30 @@ const puzzles = [
     success: "🎁 Parce que ce qui compte dans la vie c'est les petits (loulou) produits 🧼 <br> Indice : <img src=\"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjhxZjM5ajNoaHJyMG5wZ2IwODBmYWVhN3Y3NG9kaHlscW5xOXkzMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dz28kqvxiNTgkaFywk/giphy.gif\" alt=\"indice\">",
   },
   {
-    id: 8, /* -- Lunch box pour le travail, pas encore caché -- */
+    id: 8,
+    type: "fridge",
+    title: "Il reste du poulet dans le frigo",
+    question: "Clique sur tous les éléments pour vider le frigo !",
+    fridge: "photos/firdge/fridge.png",
+    items: [
+      { src: "photos/firdge/elemets_in_fridge/1.png", left: 19, top: 21, width: 24, rotate: -5 },
+      { src: "photos/firdge/elemets_in_fridge/2.png", left: 40, top: 22, width: 19, rotate: 3 },
+      { src: "photos/firdge/elemets_in_fridge/3.png", left: 58, top: 23, width: 21, rotate: -2 },
+      { src: "photos/firdge/elemets_in_fridge/4.png", left: 23, top: 38, width: 18, rotate: 4 },
+      { src: "photos/firdge/elemets_in_fridge/5.png", left: 41, top: 38, width: 20, rotate: -4 },
+      { src: "photos/firdge/elemets_in_fridge/6.png", left: 59, top: 39, width: 19, rotate: 3 },
+      { src: "photos/firdge/elemets_in_fridge/7.png", left: 20, top: 55, width: 22, rotate: -3 },
+      { src: "photos/firdge/elemets_in_fridge/8.png", left: 40, top: 55, width: 19, rotate: 5 },
+      { src: "photos/firdge/elemets_in_fridge/9.png", left: 58, top: 55, width: 21, rotate: -5 },
+      { src: "photos/firdge/elemets_in_fridge/10.png", left: 29, top: 71, width: 20, rotate: 3 },
+      { src: "photos/firdge/elemets_in_fridge/11.png", left: 51, top: 70, width: 19, rotate: -2 },
+      { src: "photos/firdge/elemets_in_fridge/12.png", left: 40, top: 85, width: 22, rotate: 4 },
+      { src: "photos/firdge/elemets_in_fridge/13.png", left: 20, top: 85, width: 19, rotate: -3 },
+    ],
+    success: "Bravo, le frigo est vide ! 🧊",
+  },
+  {
+    id: 9, /* -- Lunch box pour le travail, pas encore caché -- */
     type: "wordle",
     title: "Sell me this pen",
     question:
@@ -158,7 +182,7 @@ const puzzles = [
     success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe dans 🎤 〰️",
   },
   {
-    id: 9, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
+    id: 10, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
     type: "memory",
     title: "Light's Off",
     question:
@@ -175,7 +199,7 @@ const puzzles = [
     success: "🎁 Plus de mémoire que de cardio! Merci pour cet hyrox et bon anniversaire! On va aller bien manger pour récuperer de cet hyrox éprouvant",
   },
   {
-    id: 10, /* -- Cadeau walking pad qui va arriver bientot -- */
+    id: 11, /* -- Cadeau walking pad qui va arriver bientot -- */
     type: "guess",
     title: "Le nombre juste",
     question:
@@ -691,6 +715,53 @@ function renderChronology(puzzle) {
   renumber();
 }
 
+/* ----- Empty-the-fridge game ----- */
+function renderFridge(puzzle) {
+  el.form.classList.add("is-choice");
+
+  const game = document.createElement("div");
+  game.className = "fridge-game";
+
+  const fridge = document.createElement("img");
+  fridge.className = "fridge-background";
+  fridge.src = puzzle.fridge;
+  fridge.alt = "Réfrigérateur ouvert";
+  game.appendChild(fridge);
+
+  let remaining = puzzle.items.length;
+
+  puzzle.items.forEach((item, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "fridge-item";
+    button.style.left = `${item.left}%`;
+    button.style.top = `${item.top}%`;
+    button.style.width = `${item.width}%`;
+    button.style.setProperty("--item-rotation", `${item.rotate || 0}deg`);
+    button.setAttribute("aria-label", `Retirer l'élément ${index + 1}`);
+
+    const image = document.createElement("img");
+    image.src = item.src;
+    image.alt = "";
+    button.appendChild(image);
+
+    button.addEventListener("click", () => {
+      if (button.disabled) return;
+      button.disabled = true;
+      button.classList.add("is-removed");
+      remaining -= 1;
+
+      if (remaining === 0) {
+        setTimeout(() => onCorrect(puzzle), 400);
+      }
+    });
+
+    game.appendChild(button);
+  });
+
+  el.inputArea.appendChild(game);
+}
+
 /* ----- Rendering a puzzle ----- */
 function renderPuzzle() {
   detachKeyHandler();
@@ -786,6 +857,8 @@ function renderPuzzle() {
   } else if (puzzle.type === "memory") {
     el.form.classList.add("is-choice");
     renderMemory(puzzle);
+  } else if (puzzle.type === "fridge") {
+    renderFridge(puzzle);
   } else if (puzzle.type === "chronology") {
     renderChronology(puzzle);
   } else {

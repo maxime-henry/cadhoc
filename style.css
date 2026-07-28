@@ -416,6 +416,56 @@ body {
   transform: scale(0.97);
 }
 
+/* Empty-the-fridge game */
+.fridge-game {
+  position: relative;
+  width: min(100%, 390px);
+  margin: 0 auto;
+  isolation: isolate;
+}
+
+.fridge-background {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.fridge-item {
+  position: absolute;
+  z-index: 1;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transform: rotate(var(--item-rotation, 0deg));
+  filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.3));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fridge-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.fridge-item:hover {
+  transform: rotate(var(--item-rotation, 0deg)) scale(1.08);
+}
+
+.fridge-item:active {
+  transform: rotate(var(--item-rotation, 0deg)) scale(0.92);
+}
+
+.fridge-item.is-removed {
+  opacity: 0;
+  transform: translateY(-25px) rotate(var(--item-rotation, 0deg)) scale(1.5);
+  pointer-events: none;
+}
+
 /* Chronology / ordering game */
 .chronology-grid {
   display: grid;
