@@ -42,7 +42,7 @@ const puzzles = [
     type: "wordle",
     title: "Le mot mystère",
     question:
-      "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
+      "Devine le mot, genre comme Wordle \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
     answer: "LOULOU",
     giftLabel: "Cadeau n°1",
     success: "🎁 Bravo, c'est lui, l'enculé!!! <br> Indice, un kdo se trouve ici :<br><img src=\"https://images.ctfassets.net/gy95mqeyjg28/71Hqko1MOtbiPMd3y8iJM9/289a4d0e25d53b5025d727202e184db2/GP2304_102104_FC_1387.jpg\" alt=\"indice\">",
@@ -82,7 +82,7 @@ const puzzles = [
       "S'enfiler un euphytose nuit",
     ],
     giftLabel: "Cadeau n°3",
-    success: "Bah c'est super ça📖 <br> Indice, chez vous a la maison : <img src=\"https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyajRhMGE2eWRjb2hrYWp0Z3FzcnlsZ2l3Nnl5bWl4Nm14ZjdnOHE0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/APq0WQXgQQrKFcBbjP/giphy.gif\" alt=\"indice\">",
+    success: "Bah c'est super ça📖 <br> Indice, chez vous à la maison : <img src=\"https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyajRhMGE2eWRjb2hrYWp0Z3FzcnlsZ2l3Nnl5bWl4Nm14ZjdnOHE0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/APq0WQXgQQrKFcBbjP/giphy.gif\" alt=\"indice\">",
   },
   {
     id: 4,
@@ -175,11 +175,10 @@ const puzzles = [
     id: 9, /* -- Lunch box pour le travail, pas encore caché -- */
     type: "wordle",
     title: "Sell me this pen",
-    question:
-      "Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
+    question:"Devine le mot \n(Vert = bien placé, jaune = mal placé, gris = absent.)",
     answer: "EMLYON",
     giftLabel: "Cadeau n°7",
-    success: "🎁 Félicitation pour ton poste, un cadeau utile ce situe dans 🎤 〰️",
+    success: "🎁 Félicitation pour ton poste, un cadeau utile se situe dans 🎤 〰️",
   },
   {
     id: 10, /* -- Idée ici est de célébrer l'acomplissement de l'hyrox, cadeau peut etre restaurant ?-- */
