@@ -206,7 +206,7 @@ const puzzles = [
       "En moyenne, combien de pas de plus que toi fait Abricot par jour ?",
     answer: 15655,
     giftLabel: "Cadeau n°9",
-    success: "🎁 Bravo! Oui je sais, c'est énorme. Mais il a des petites pattes d'enculé. <br> Psssst, ça arrive bientot 🤫 <img src=\"photos/walking-pad.png\" alt=\"indice\">",
+    success: "🎁 Bravo! Oui je sais, c'est énorme. Mais il a des petites pattes d'enculé. <br> Psssst, ça arrive bientot 🤫 <img src=\"photos/walking-pad.PNG\" alt=\"indice\">",
   },
 
 ];
