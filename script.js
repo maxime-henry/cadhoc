@@ -152,7 +152,7 @@ const puzzles = [
     id: 8,
     type: "fridge",
     title: "Il reste du poulet dans le frigo",
-    question: "Clique sur tous les éléments pour vider le frigo !",
+    question: "",
     fridge: "photos/firdge/fridge.png",
     items: [
       { src: "photos/firdge/elemets_in_fridge/1.png", left: 19, top: 21, width: 24, rotate: -5 },
