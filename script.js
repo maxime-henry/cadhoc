@@ -786,6 +786,7 @@ function renderPuzzle() {
   el.feedback.className = "feedback";
   el.successCard.hidden = true;
   el.puzzleCard.hidden = false;
+  el.puzzleCard.classList.remove("shake"); // clear leftover wrong-answer animation
 
   // Build the input area based on type
   el.inputArea.innerHTML = "";
