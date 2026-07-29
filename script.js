@@ -143,7 +143,7 @@ const puzzles = [
     type: "text",
     title: "Mot mystère",
     question:
-      "Remets les lettres dans l'ordre pour trouver le mot mystère : U T I L S A I R",
+      "Remets les lettres dans l'ordre pour trouver le mot mystère : U T I L S A R",
     answer: "RITUALS",
     giftLabel: "Cadeau n°6",
     success: "🎁 Parce que ce qui compte dans la vie c'est les petits (loulou) produits 🧼 <br> Indice : <img src=\"https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjhxZjM5ajNoaHJyMG5wZ2IwODBmYWVhN3Y3NG9kaHlscW5xOXkzMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dz28kqvxiNTgkaFywk/giphy.gif\" alt=\"indice\">",
@@ -169,7 +169,7 @@ const puzzles = [
       { src: "photos/firdge/elemets_in_fridge/12.png", left: 40, top: 85, width: 22, rotate: 4 },
       { src: "photos/firdge/elemets_in_fridge/13.png", left: 20, top: 85, width: 19, rotate: -3 },
     ],
-    success: "Bravo, le frigo est vide ! 🧊",
+    success: "Bravo, c'est important de vider le frigo, aller on perd pas de temps.",
   },
   {
     id: 9, /* -- Lunch box pour le travail, pas encore caché -- */
